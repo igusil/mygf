@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transição de Fotos Responsiva</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #111;
+      padding: 20px;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 3 / 2; /* Mantém proporção responsiva */
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="slider">
+    <div class="slide active">
+      <img src="https://picsum.photos/id/1015/800/600" alt="Imagem 1">
+    </div>
+    <div class="slide">
+      <img src="https://picsum.photos/id/1016/800/600" alt="Imagem 2">
+    </div>
+    <div class="slide">
+      <img src="https://picsum.photos/id/1018/800/600" alt="Imagem 3">
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+
+    function showNextSlide() {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }
+
+    setInterval(showNextSlide, 3000);
+  </script>
+</body>
+</html>
